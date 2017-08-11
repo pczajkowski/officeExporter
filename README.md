@@ -9,6 +9,7 @@ Usage is simple:
 Same is true for other file types:
 
 *./extractText test.pptx* - content of each slideNUMBER.xml will be exported as slideNUMBER.txt
+
 *./extractText test.xlsx* - content of sharedStrings.xml will be exported as sharedStrings.txt
 
 As you can see for Excel files export is limited to shared strings which are stored in order of input to original document. First entered text is first on the list, last will be last. This list won't contain duplicated values.
