@@ -1,0 +1,1 @@
+int readZIP(char const *infile, const char *fileMask);
