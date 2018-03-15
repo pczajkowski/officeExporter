@@ -4,13 +4,13 @@ This tool will help you to extract text from various Office documents into text 
 
 Usage is simple:
 
-*./extractText test.docx* - content of document.xml will be exported as document.txt
+	*./extractText test.docx* - content of document.xml will be exported as document.txt
 
 Same is true for other file types:
 
-*./extractText test.pptx* - content of each slideNUMBER.xml will be exported as slideNUMBER.txt
+	*./extractText test.pptx* - content of each slideNUMBER.xml will be exported as slideNUMBER.txt
 
-*./extractText test.xlsx* - content of sharedStrings.xml will be exported as sharedStrings.txt
+	*./extractText test.xlsx* - content of sharedStrings.xml will be exported as sharedStrings.txt
 
 As you can see for Excel files export is limited to shared strings which are stored in order of input to original document. First entered text is first on the list, last will be last. This list won't contain duplicated values.
 
