@@ -7,7 +7,7 @@
 
 void usage(const char *name) {
 	printf("%s inputFile\n", name);
-	printf("Currently docx and pptx are supported.\n");
+	printf("Docx, xlsx and pptx are supported.\n");
 }
 
 int main(int argc, char **argv) {

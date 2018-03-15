@@ -45,14 +45,14 @@ int transformXML(XMLBuff *infile) {
 	Stopif(xsltSaveResultToFile(fp, result, stylesheet) < 0, return 0, "Nothing saved to %s!\n", outFile);
 	fclose(fp);
 	free(outFile);
-	
+
 	xmlFreeDoc(result);
 	xmlFreeDoc(doc);
-    return 1;
+	return 1;
 }
 
 void transformCleanup() {
 	xsltFreeStylesheet(stylesheet);
 	xsltCleanupGlobals();
-    xmlCleanupParser();
+	xmlCleanupParser();
 }

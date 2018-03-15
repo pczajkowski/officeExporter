@@ -29,7 +29,7 @@ int readZIP(char const *infile, const char *fileMask) {
 	Stopif(archive_read_open_filename(archiveIn, infile, 10240) != ARCHIVE_OK, return 0, "Can't read file %s!\n", infile);
 
 	Stopif(!processContent(archiveIn, fileMask), return 0, "Can't process file %s!\n", infile);
-	
+
 	Stopif(archive_read_free(archiveIn) != ARCHIVE_OK, return 0, "Can't free %s!\n", infile);
 	return 1;
 }
