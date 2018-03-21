@@ -8,7 +8,7 @@ Usage is simple:
 
 Same is true for other file types:
 
-	./extractText test.pptx - content of each slideNUMBER.xml will be exported as slideNUMBER.txt
+	./extractText test.pptx - content of each slideNUMBER.xml and drawingNUMBER.xml will be exported as slideNUMBER.txt and drawingNUMBER.txt respectively
 
 	./extractText test.xlsx - content of sharedStrings.xml will be exported as sharedStrings.txt
 

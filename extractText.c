@@ -27,6 +27,7 @@ int main(int argc, char **argv) {
 	else if (strcmp(dot, ".pptx") == 0) {
 		Stopif(!transformLoad(pptxToTxt, sizeof(pptxToTxt)), return 1, "Can't load transform!\n");
 		readZIP(argv[1], slideFiles);
+		readZIP(argv[1], drawingFiles);
 		transformCleanup();
 	}
 	else if (strcmp(dot, ".xlsx") == 0) {
