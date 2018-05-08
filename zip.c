@@ -7,16 +7,15 @@ int processContent(struct archive *archiveIn, const char *fileMask) {
 
 	while (archive_read_next_header(archiveIn, &entryIn) == ARCHIVE_OK) {
 		const char* path = archive_entry_pathname(entryIn);
+		if (strstr(path, fileMask) == NULL) continue;
+
 		int64_t size = archive_entry_size(entryIn);
 		char buf[size];
 		Stopif(archive_read_data(archiveIn, buf, size) != size, return 0, "Archive entry has no size (%s)!\n", path);
-
-		if (strstr(path, fileMask) != NULL) {
-			XMLBuff *slide = XMLBuffNew();
-			*slide = (XMLBuff){.data=buf, .size=size, .name=path};
-			Stopif(!transformXML(slide), return 0, "Can't process file (%s)!\n", path);
-			XMLBuffFree(slide);
-		}
+		XMLBuff *slide = XMLBuffNew();
+		*slide = (XMLBuff){.data=buf, .size=size, .name=path};
+		Stopif(!transformXML(slide), return 0, "Can't process file (%s)!\n", path);
+		XMLBuffFree(slide);
 	}
 	return 1;
 }
