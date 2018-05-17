@@ -2,7 +2,7 @@
 #include "transform.h"
 #include "stopif.h"
 
-int processContent(struct archive *archiveIn, const char *fileMask) {
+static int processContent(struct archive *archiveIn, const char *fileMask) {
 	struct archive_entry *entryIn;
 
 	while (archive_read_next_header(archiveIn, &entryIn) == ARCHIVE_OK) {
