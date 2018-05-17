@@ -3,7 +3,7 @@
 #include <libgen.h>
 #include "fileinfo.h"
 
-struct fileInfo* newFileInfo(char const *filePath) {
+struct fileInfo* newFileInfo(const char *filePath) {
 	if (!strrchr(filePath, '.')) return NULL;
 
 	struct fileInfo *info = malloc(sizeof(struct fileInfo));

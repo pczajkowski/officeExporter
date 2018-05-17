@@ -3,5 +3,5 @@
 #include "stopif.h"
 
 int transformLoad(const char *stylesheetData, size_t stylesheetSize);
-int transformXML(XMLBuff *infile);
+int transformXML(const XMLBuff *infile);
 void transformCleanup();

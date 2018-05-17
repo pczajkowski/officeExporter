@@ -4,5 +4,5 @@ struct fileInfo
 	char *_base; // this is just for slicing
 };
 
-struct fileInfo* newFileInfo(char const *filePath);
+struct fileInfo* newFileInfo(const char *filePath);
 void freeFileInfo(struct fileInfo *info);
