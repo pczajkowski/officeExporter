@@ -7,11 +7,13 @@ struct fileInfo* newFileInfo(const char *filePath) {
 	if (!strrchr(filePath, '.')) return NULL;
 
 	struct fileInfo *info = malloc(sizeof(struct fileInfo));
-	info->fullname = malloc(strlen(filePath)+1);
-	strcpy(info->fullname, filePath);
-
-	info->_base = malloc(strlen(basename(info->fullname))+1);
-	strcpy(info->_base, basename(info->fullname));
+	size_t filePathLength = strlen(filePath);
+	info->fullname = calloc(filePathLength+1, 1);
+	strncpy(info->fullname, filePath, filePathLength);
+	
+	size_t basenameLength = strlen(basename(info->fullname));
+	info->_base = calloc(basenameLength+1, 1);
+	strncpy(info->_base, basename(info->fullname), basenameLength);
 
 	char *dot = ".";
 	info->name = strtok(info->_base, dot);
