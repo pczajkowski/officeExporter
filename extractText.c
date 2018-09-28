@@ -6,9 +6,9 @@
 #include "extractText.h"
 #include "incbin.h"
 
-INCBIN(DocxToTxt, "docxToTxt.xsl");
-INCBIN(PptxToTxt, "pptxToTxt.xsl");
-INCBIN(XlsxToTxt, "xlsxToTxt.xsl");
+INCBIN(DocxToTxt, "xsl/docxToTxt.xsl");
+INCBIN(PptxToTxt, "xsl/pptxToTxt.xsl");
+INCBIN(XlsxToTxt, "xsl/xlsxToTxt.xsl");
 
 void usage(const char *name) {
 	printf("%s inputFile\n", name);
