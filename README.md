@@ -16,4 +16,6 @@ As you can see for Excel files export is limited to shared strings which are sto
 
 This is a hobby project created for fun and to explore C and its libraries further. Feel free to use it however you want, but I take no responsibility for eventual damage.
 
+It's using [incbin](https://github.com/graphitemaster/incbin) for embedding xsl files into binary.
+
 You can find 64-bit Windows binary with necessary MingW libraries in *win* folder.
