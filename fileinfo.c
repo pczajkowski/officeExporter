@@ -7,9 +7,9 @@ struct fileInfo* newFileInfo(const char *filePath) {
 	if (!strrchr(filePath, '.')) return NULL;
 
 	struct fileInfo *info = malloc(sizeof(struct fileInfo));
-	size_t filePathLength = strlen(filePath);
-	info->fullname = calloc(filePathLength+1, 1);
-	strncpy(info->fullname, filePath, filePathLength);
+	info->fullnameLength = strlen(filePath);
+	info->fullname = calloc(info->fullnameLength+1, 1);
+	strncpy(info->fullname, filePath, info->fullnameLength);
 	
 	size_t basenameLength = strlen(basename(info->fullname));
 	info->_base = calloc(basenameLength+1, 1);
@@ -17,6 +17,7 @@ struct fileInfo* newFileInfo(const char *filePath) {
 
 	char *dot = ".";
 	info->name = strtok(info->_base, dot);
+	info->nameLength = strlen(info->name);
 	info->ext = strtok(NULL, dot);
 	if (info->name && info->ext)
 		return info;
