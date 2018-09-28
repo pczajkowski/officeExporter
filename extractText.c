@@ -4,6 +4,11 @@
 #include "zip.h"
 #include "stopif.h"
 #include "extractText.h"
+#include "incbin.h"
+
+INCBIN(DocxToTxt, "docxToTxt.xsl");
+INCBIN(PptxToTxt, "pptxToTxt.xsl");
+INCBIN(XlsxToTxt, "xlsxToTxt.xsl");
 
 void usage(const char *name) {
 	printf("%s inputFile\n", name);
@@ -20,18 +25,18 @@ int main(int argc, char **argv) {
 	Stopif(!dot, return 1, "Bad input file name!\n");
 
 	if (strcmp(dot, ".docx") == 0) {
-		Stopif(!transformLoad(docxToTxt, sizeof(docxToTxt)), return 1, "Can't load transform!\n");
+		Stopif(!transformLoad((char*)gDocxToTxtData, gDocxToTxtSize), return 1, "Can't load transform!\n");
 		readZIP(argv[1], wordFile);
 		transformCleanup();	
 	}
 	else if (strcmp(dot, ".pptx") == 0) {
-		Stopif(!transformLoad(pptxToTxt, sizeof(pptxToTxt)), return 1, "Can't load transform!\n");
+		Stopif(!transformLoad((char*)gPptxToTxtData, gPptxToTxtSize), return 1, "Can't load transform!\n");
 		readZIP(argv[1], slideFiles);
 		readZIP(argv[1], drawingFiles);
 		transformCleanup();
 	}
 	else if (strcmp(dot, ".xlsx") == 0) {
-		Stopif(!transformLoad(xlsxToTxt, sizeof(xlsxToTxt)), return 1, "Can't load transform!\n");
+		Stopif(!transformLoad((char*)gXlsxToTxtData, gXlsxToTxtSize), return 1, "Can't load transform!\n");
 		readZIP(argv[1], xlsxFile);
 		transformCleanup();
 	}
