@@ -24,7 +24,7 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Install dependencies
-      run: sudo apt install libarchive-dev libxml2-dev
+      run: sudo apt install libarchive-dev libxml2-dev libxslt1-dev
 
     - name: Build
       run: make
