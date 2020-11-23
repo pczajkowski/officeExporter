@@ -1,7 +1,7 @@
 struct fileInfo
 {
 	char *fullname, *name, *ext;
-	int fullnameLength, nameLength;
+	size_t fullnameLength, nameLength, basenameLength;
 	char *_base; // this is just for slicing
 };
 
