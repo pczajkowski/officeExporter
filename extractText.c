@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "fileinfo.h"
 #include "transform.h"
 #include "zip.h"
 #include "stopif.h"
@@ -21,23 +22,25 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
-	char *dot = strrchr(argv[1], '.');
-	Stopif(!dot, return 1, "Bad input file name!\n");
+	struct fileInfo *fi = newFileInfo(argv[1]);
+	Stopif(!fi, return 1, "Can't establish fileinfo!\n");
 
-	if (strcmp(dot, ".docx") == 0) {
+	if (strcmp(fi->ext, "docx") == 0) {
 		Stopif(!transformLoad((char*)gDocxToTxtData, gDocxToTxtSize), return 1, "Can't load transform!\n");
-		readZIP(argv[1], wordFile);
-		transformCleanup();	
+		readZIP(fi->fullname, wordFile);
+		transformCleanup();
 	}
-	else if (strcmp(dot, ".pptx") == 0) {
+	else if (strcmp(fi->ext, "pptx") == 0) {
 		Stopif(!transformLoad((char*)gPptxToTxtData, gPptxToTxtSize), return 1, "Can't load transform!\n");
-		readZIP(argv[1], slideFiles);
-		readZIP(argv[1], drawingFiles);
+		readZIP(fi->fullname, slideFiles);
+		readZIP(fi->fullname, drawingFiles);
 		transformCleanup();
 	}
-	else if (strcmp(dot, ".xlsx") == 0) {
+	else if (strcmp(fi->ext, "xlsx") == 0) {
 		Stopif(!transformLoad((char*)gXlsxToTxtData, gXlsxToTxtSize), return 1, "Can't load transform!\n");
-		readZIP(argv[1], xlsxFile);
+		readZIP(fi->fullname, xlsxFile);
 		transformCleanup();
 	}
+
+	free(fi);
 }
