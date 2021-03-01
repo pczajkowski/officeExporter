@@ -10,6 +10,7 @@
 #include <libxslt/xsltInternals.h>
 #include <libxslt/transform.h>
 #include <libxslt/xsltutils.h>
+#include "fileinfo.h"
 #include "transform.h"
 
 extern int xmlLoadExtDtdDefaultValue;
