@@ -25,5 +25,6 @@ test: default
 	@rm slide2.txt
 	@rm slide3.txt
 	@rm extractText
+	@echo "OK"
 
 default: extractText
