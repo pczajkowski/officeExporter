@@ -5,5 +5,5 @@ typedef struct XMLBuff
 	int size;
 } XMLBuff;
 
-XMLBuff *XMLBuffNew(void);
+XMLBuff *XMLBuffNew(char *data, const char *name, int size);
 void XMLBuffFree(XMLBuff *in);

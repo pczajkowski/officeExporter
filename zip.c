@@ -12,10 +12,11 @@ static int processContent(struct archive *archiveIn, const char *fileMask) {
 		int64_t size = archive_entry_size(entryIn);
 		char buf[size];
 		Stopif(archive_read_data(archiveIn, buf, size) != size, return 0, "Archive entry has no size (%s)!\n", path);
-		XMLBuff *slide = XMLBuffNew();
-		*slide = (XMLBuff){.data=buf, .size=size, .name=path};
-		Stopif(!transformXML(slide), return 0, "Can't process file (%s)!\n", path);
-		XMLBuffFree(slide);
+
+		XMLBuff *file = XMLBuffNew(buf, path, size);
+		Stopif(!file, return 0, "Can't create XMLBuff for %s!\n", path);
+		Stopif(!transformXML(file), return 0, "Can't process file (%s)!\n", path);
+		XMLBuffFree(file);
 	}
 	return 1;
 }

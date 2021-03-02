@@ -1,12 +1,14 @@
 #include <stdlib.h>
 #include "xmlbuff.h"
 
-XMLBuff *XMLBuffNew(void) {
+XMLBuff *XMLBuffNew(char *data, const char *name, int size) {
 	XMLBuff *out = malloc(sizeof(XMLBuff));
-	*out = (XMLBuff){ .data=NULL };                          
+	if (!out) return NULL;
+
+	*out = (XMLBuff){ .data=data, .name=name, .size=size };
 	return out;
 }
 
 void XMLBuffFree(XMLBuff *in) {
-	free(in);
+	if (in) free(in);
 }
