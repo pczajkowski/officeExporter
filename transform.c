@@ -36,8 +36,11 @@ int transformXML(const XMLBuff *infile) {
 	Stopif(!result, return 0, "Transformation failed for %s!\n", infile->name);
 
 	struct fileInfo *fi = newFileInfo(infile->name);
-	char *outFile = malloc(fi->nameLength+5);
-	snprintf(outFile, fi->nameLength+5, "%s.txt", fi->name);
+	Stopif(!fi, return 0, "Failed to establish fileinfo for %s!\n", infile->name);
+
+	int toPrint = fi->nameLength+5;
+	char *outFile = malloc(toPrint);
+	Stopif(toPrint <= snprintf(outFile, toPrint, "%s.txt", fi->name), return 0, "Failed to create output filename for %s!\n", infile->name);
 	freeFileInfo(fi);
 
 	FILE *fp;
