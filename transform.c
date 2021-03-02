@@ -43,8 +43,8 @@ int transformXML(const XMLBuff *infile) {
 	Stopif(toPrint <= snprintf(outFile, toPrint, "%s.txt", fi->name), return 0, "Failed to create output filename for %s!\n", infile->name);
 	freeFileInfo(fi);
 
-	FILE *fp;
-	fp = fopen(outFile, "w");
+	FILE *fp = fopen(outFile, "w");
+	Stopif(!fp, return 0, "Can't open %s for writing!\n", outFile);
 	Stopif(xsltSaveResultToFile(fp, result, stylesheet) < 0, return 0, "Nothing saved to %s!\n", outFile);
 	fclose(fp);
 	free(outFile);
