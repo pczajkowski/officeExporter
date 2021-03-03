@@ -44,7 +44,7 @@ int transformXML(const XMLBuff *infile) {
 
 	FILE *fp = fopen(outFile, "w");
 	Stopif(!fp, return 0, "Can't open %s for writing!\n", outFile);
-	Stopif(xsltSaveResultToFile(fp, result, stylesheet) < 0, return 0, "Nothing saved to %s!\n", outFile);
+	Stopif(0 > xsltSaveResultToFile(fp, result, stylesheet), return 0, "Nothing saved to %s!\n", outFile);
 	fclose(fp);
 	free(outFile);
 
