@@ -10,16 +10,16 @@ clean:
 
 test: default
 	@./extractText testFiles/test.docx
-	@cmp document.txt testFiles/document.txt
+	@cmp document.txt testFiles/document.txt -s; if [ $$? -gt 0 ] ; then echo "FAILURE: document.txt!"; exit 1; fi
 	@rm document.txt
 	@./extractText testFiles/test.xlsx
-	@cmp sharedStrings.txt testFiles/sharedStrings.txt
+	@cmp sharedStrings.txt testFiles/sharedStrings.txt -s; if [ $$? -gt 0 ] ; then echo "FAILURE: sharedStrings.txt!"; exit 1; fi
 	@rm sharedStrings.txt
 	@./extractText testFiles/test.pptx
-	@cmp drawing1.txt testFiles/drawing1.txt
-	@cmp slide1.txt testFiles/slide1.txt
-	@cmp slide2.txt testFiles/slide2.txt
-	@cmp slide3.txt testFiles/slide3.txt
+	@cmp drawing1.txt testFiles/drawing1.txt -s; if [ $$? -gt 0 ] ; then echo "FAILURE: drawing1.txt!"; exit 1; fi
+	@cmp slide1.txt testFiles/slide1.txt -s; if [ $$? -gt 0 ] ; then echo "FAILURE: slide1.txt!"; exit 1; fi
+	@cmp slide2.txt testFiles/slide2.txt -s; if [ $$? -gt 0 ] ; then echo "FAILURE: slide2.txt!"; exit 1; fi
+	@cmp slide3.txt testFiles/slide3.txt -s; if [ $$? -gt 0 ] ; then echo "FAILURE: slide3.txt!"; exit 1; fi
 	@rm drawing1.txt
 	@rm slide1.txt
 	@rm slide2.txt
