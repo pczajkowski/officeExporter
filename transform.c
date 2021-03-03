@@ -29,10 +29,9 @@ int transformLoad(const char *stylesheetData, size_t stylesheetSize) {
 }
 
 int transformXML(const XMLBuff *infile) {
-	xmlDocPtr doc, result;
-	doc = xmlReadMemory(infile->data, infile->size, infile->name, NULL, 0);
+	xmlDocPtr doc = xmlReadMemory(infile->data, infile->size, infile->name, NULL, 0);
 	Stopif(!doc, return 0, "Unable to read %s!\n", infile->name);
-	result = xsltApplyStylesheet(stylesheet, doc, NULL);
+	xmlDocPtr result = xsltApplyStylesheet(stylesheet, doc, NULL);
 	Stopif(!result, return 0, "Transformation failed for %s!\n", infile->name);
 
 	struct fileInfo *fi = newFileInfo(infile->name);
